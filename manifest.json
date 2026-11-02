@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "PagePin — Notes Web, Labels & Tableau de Bord des Pins",
+  "version": "2.0.0",
+  "description": "Épinglez des notes ancrées aux éléments de vos sites web (base de données vierge au démarrage + démo animée StarOfService Philippe Hottois, durci XSS/CSP et optimisé DOM).",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none';"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PagePin — Notes, Labels & Tableau de Bord"
+  },
+  "options_page": "dashboard.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

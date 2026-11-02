@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr" data-theme="noir">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PagePin — Popup</title>
+<style>
+:root, html[data-theme="clair"] { --bg:#f3f5f8; --sf:#ffffff; --sf2:#f8fafc; --line:#e2e8f0; --ink:#0f172a; --tx:#334155; --mute:#64748b; }
+html[data-theme="bleu"] { --bg:#0a1426; --sf:#10203a; --sf2:#0c182d; --line:#1e3a66; --ink:#f0f7ff; --tx:#cbd5e1; --mute:#7dd3fc; }
+html[data-theme="rose"] { --bg:#1b0913; --sf:#280f1d; --sf2:#200b17; --line:#4c1d38; --ink:#fff1f5; --tx:#fecdd3; --mute:#fda4af; }
+html[data-theme="noir"] { --bg:#131517; --sf:#1b1e21; --sf2:#16191c; --line:#2c3035; --ink:#ffffff; --tx:#e5e7eb; --mute:#8b929a; }
+html[data-theme="noir-led"] { --bg:#000000; --sf:#050507; --sf2:#020203; --line:#00f59b; --ink:#ffffff; --tx:#e2e8f0; --mute:#00f59b; }
+*{box-sizing:border-box}
+body{margin:0;width:340px;background:var(--bg);color:var(--tx);font:13px/1.45 system-ui,-apple-system,sans-serif}
+.head{padding:12px 14px;background:var(--sf);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.head strong{font-size:14px;color:var(--ink)}
+.controls{padding:12px 14px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+button{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--sf);color:var(--ink);font-weight:600;font-size:12px;cursor:pointer}
+input[type="search"]{width:100%;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--sf2);color:var(--ink);font-size:12px}
+#notes-list{max-height:300px;overflow-y:auto}
+.item{padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+.item:hover{background:var(--sf2)}
+.meta{font-size:11px;color:var(--mute);margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.tag{font-size:10px;padding:1px 6px;border-radius:4px;background:var(--sf2);color:var(--tx);border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="head">
+  <strong>🛡️ PagePin v2.0.0</strong>
+  <button id="dashboard-btn" type="button">Dashboard</button>
+</div>
+<div class="controls">
+  <button id="toggle-btn" type="button">Activer le mode annotation sur ce site</button>
+  <input id="search-input" type="search" placeholder="Filtrer les puces...">
+</div>
+<div id="notes-list"></div>
+<script src="popup.js"></script>
+</body>
+</html>

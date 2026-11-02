@@ -1,0 +1,348 @@
+/* PagePin v2.0.0 — Styles injectés optimisés (Compositeur GPU, contain: layout style, Tutoriel Animé StarOfService) */
+.pagepin-annotation-cursor, .pagepin-annotation-cursor * {
+  cursor: crosshair !important;
+}
+.pagepin-page-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483646;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 6px 8px 6px 14px;
+  border-radius: 9999px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  contain: layout style;
+}
+.pagepin-page-banner.pagepin-banner-active {
+  background: #be123c;
+  border-color: #fda4af;
+  box-shadow: 0 10px 30px rgba(225, 29, 72, 0.45);
+}
+.pagepin-page-banner .pp-banner-main {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+.pagepin-page-banner .pp-banner-sub {
+  background: #4f46e5;
+  border: none;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.pagepin-page-banner .pp-banner-sub.pp-banner-danger {
+  background: #0f172a;
+}
+.pagepin-pin-bubble {
+  position: fixed;
+  z-index: 2147483645;
+  width: 32px;
+  height: 32px;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, left, top;
+  contain: layout style;
+  border-radius: 9999px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.pagepin-pin-bubble:hover {
+  transform: translate3d(-50%, -50%, 0) scale(1.15);
+  background: #4338ca;
+}
+.pagepin-pin-pulse {
+  background: #e11d48 !important;
+  animation: pagepinPulse 0.7s ease-in-out infinite !important;
+  box-shadow: 0 0 0 6px rgba(225, 29, 72, 0.4), 0 0 0 14px rgba(225, 29, 72, 0.18), 0 8px 25px rgba(79, 70, 229, 0.8) !important;
+}
+.pagepin-pin-pulse::before,
+.pagepin-pin-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 2px solid #f43f5e;
+  pointer-events: none;
+  animation: pagepinRadarWave 1.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.pagepin-pin-pulse::after {
+  animation-delay: 0.45s;
+  border-color: #6366f1;
+}
+@keyframes pagepinPulse {
+  0%, 100% { transform: translate3d(-50%, -50%, 0) scale(1); background: #4f46e5; }
+  50% { transform: translate3d(-50%, -50%, 0) scale(1.48); background: #e11d48; }
+}
+@keyframes pagepinRadarWave {
+  0% { transform: scale(0.85); opacity: 0.95; }
+  100% { transform: scale(2.45); opacity: 0; }
+}
+.pagepin-target-found-highlight {
+  outline: 3px solid #e11d48 !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 6px rgba(225, 29, 72, 0.2), 0 14px 32px rgba(15, 23, 42, 0.2) !important;
+  border-radius: 8px !important;
+  transition: outline 0.25s ease, box-shadow 0.25s ease !important;
+}
+.pagepin-spotlight-callout {
+  position: fixed;
+  z-index: 2147483646;
+  transform: translate3d(-50%, -100%, 0);
+  will-change: transform, left, top;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  white-space: nowrap;
+  border: 1px solid #f43f5e;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+  pointer-events: none;
+}
+.pagepin-progressive-hud {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  width: 340px;
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.45);
+  border: 1px solid #f59e0b;
+  contain: layout style;
+}
+.pagepin-progressive-hud .pp-hud-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.pagepin-progressive-hud .pp-hud-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fbbf24;
+}
+.pagepin-progressive-hud .pp-hud-stop {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pagepin-progressive-hud .pp-hud-sub {
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pagepin-progressive-hud .pp-hud-bar {
+  width: 100%;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.pagepin-progressive-hud .pp-hud-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #10b981);
+  transition: width 0.2s ease;
+}
+/* Animation de démonstration guidée (Curseur virtuel + surbrillance fiche Philippe Hottois) */
+.pagepin-demo-target-highlight {
+  outline: 3px solid #e11d48 !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 8px rgba(225, 29, 72, 0.22), 0 16px 36px rgba(15, 23, 42, 0.25) !important;
+  border-radius: 10px !important;
+  transition: outline 0.25s ease, box-shadow 0.25s ease !important;
+}
+.pagepin-demo-cursor {
+  position: fixed;
+  z-index: 2147483647;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 6px 12px rgba(15, 23, 42, 0.45));
+}
+.pagepin-demo-cursor-ring {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  border: 2px solid #e11d48;
+  background: rgba(225, 29, 72, 0.2);
+  animation: pagepinCursorRipple 0.9s ease-out infinite;
+}
+@keyframes pagepinCursorRipple {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+.pagepin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.pagepin-modal-card {
+  background: #ffffff;
+  color: #0f172a;
+  width: 100%;
+  max-width: 480px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+.pagepin-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.pagepin-modal-card h3 {
+  margin: 0;
+  font-size: 17px;
+}
+.pagepin-badge {
+  font-size: 11px;
+  font-family: monospace;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.pagepin-labels-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0;
+}
+.pagepin-label-chip {
+  font-size: 11px;
+  font-weight: 600;
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.pagepin-quote {
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+  margin: 6px 0 10px;
+}
+.pagepin-modal-card label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+.pagepin-modal-card input, .pagepin-modal-card select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.pagepin-toolbar {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+.pagepin-toolbar button {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.pagepin-rich-editor {
+  min-height: 75px;
+  max-height: 140px;
+  overflow-y: auto;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 0 0 8px 8px;
+  font-size: 13px;
+  outline: none;
+}
+.pagepin-rich-body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1e293b;
+  margin: 8px 0;
+}
+.pagepin-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.pagepin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.pagepin-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  cursor: pointer;
+  font-weight: 600;
+}
+.pagepin-actions button.primary {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+}
+.pagepin-actions button.danger {
+  background: #fff1f2;
+  color: #e11d48;
+  border-color: #fecdd3;
+}

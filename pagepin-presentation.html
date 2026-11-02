@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PagePin</title>
+<style>
+:root{--bg:#fbfbfe;--ink:#171a3a;--mute:#5b607f;--line:#e4e6f5;--soft:#f0f1fb;--ac:#4f46e5;--rose:#e11d48;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1024;--ink:#f1f2ff;--mute:#a3a8cf;--line:#272a52;--soft:#181a3a;--ac:#6a63f2}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:720px;margin-inline:auto;padding-inline:24px}
+section{margin-bottom:88px}
+header{display:flex;justify-content:space-between;align-items:center;padding-block:20px}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em}
+.lang{display:flex;gap:2px;padding:3px;background:var(--soft);border-radius:99px}
+.lang button{border:0;background:none;color:var(--mute);font:600 13px system-ui,sans-serif;padding:7px 14px;border-radius:99px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ac);color:#fff}
+button:focus-visible,a:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+h1{font-size:clamp(36px,8vw,60px);line-height:1.04;letter-spacing:-.04em;margin:44px 0 18px;font-weight:800}
+h2{font-size:28px;letter-spacing:-.02em;margin:0 0 28px}
+h3{margin:0 0 4px;font-size:20px;letter-spacing:-.01em}
+p{margin:0}
+.lead{color:var(--mute);font-size:19px;max-width:540px;margin-bottom:28px}
+.cta{display:inline-block;background:var(--ac);color:#fff;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:12px}
+code{background:var(--soft);padding:2px 8px;border-radius:6px;font-size:.9em}
+
+/* Démo animée : une boucle de 7 s */
+.demo{margin-top:48px;border:1px solid var(--line);border-radius:16px;background:var(--soft);overflow:hidden}
+.bar{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.pg{position:relative;height:250px;padding:26px 28px}
+.pg b{display:block;height:10px;border-radius:5px;background:var(--line);margin-bottom:14px}
+.l1{width:60%}.l2{width:85%}.l3{width:70%}
+.tw{position:relative;width:58%;margin:6px 0 18px}
+.tg{height:46px;border-radius:10px;background:var(--bg);border:2px solid var(--line);animation:tg 7s infinite}
+.bub{position:absolute;top:-12px;right:-12px;width:32px;height:32px;border-radius:50%;background:var(--ac);color:#fff;font:700 14px/28px system-ui,sans-serif;text-align:center;border:2px solid #fff;box-shadow:0 4px 14px rgba(79,70,229,.45)}
+.bub::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--rose);opacity:0}
+.pulse::after{animation:ring 1.6s infinite}
+.b1{animation:pin 7s infinite}
+.note{position:absolute;left:0;top:58px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600;white-space:nowrap;box-shadow:0 10px 30px rgba(79,70,229,.15);animation:nt 7s infinite}
+.cur{position:absolute;left:55%;top:32%;pointer-events:none;filter:drop-shadow(0 3px 4px rgba(0,0,0,.25));animation:cur 7s infinite}
+@keyframes tg{0%,29%{border-color:var(--line)}33%,90%{border-color:var(--ac)}100%{border-color:var(--line)}}
+@keyframes pin{0%,30%{transform:scale(0)}36%{transform:scale(1.25)}40%,92%{transform:scale(1)}100%{transform:scale(0)}}
+@keyframes nt{0%,38%{opacity:0;transform:translateY(8px)}46%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+@keyframes cur{0%{left:92%;top:92%;opacity:0}8%{opacity:1}28%{left:55%;top:32%;transform:scale(1)}31%{transform:scale(.8)}34%{transform:scale(1)}46%{left:55%;top:32%;opacity:1}56%,100%{left:75%;top:72%;opacity:0}}
+@keyframes ring{0%{transform:scale(.8);opacity:.9}100%{transform:scale(2);opacity:0}}
+
+/* Les 3 étapes */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:30px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:72px 1fr;gap:20px;align-items:center}
+.steps h3::before{counter-increment:s;content:counter(s) ". ";color:var(--ac)}
+.steps p{color:var(--mute)}
+.vis{width:72px;height:72px;border-radius:18px;background:var(--soft);display:grid;place-items:center}
+.vis .bub{position:relative;inset:auto}
+.vis .pulse{background:var(--rose);box-shadow:0 4px 14px rgba(225,29,72,.45)}
+.b2{animation:pop 3.2s infinite}
+.sw{width:44px;height:24px;border-radius:99px;background:var(--line);position:relative;animation:swt 3.2s infinite}
+.sw i{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;animation:swk 3.2s infinite}
+@keyframes swt{0%,25%{background:var(--line)}35%,85%{background:var(--ac)}95%,100%{background:var(--line)}}
+@keyframes swk{0%,25%{transform:none}35%,85%{transform:translateX(20px)}95%,100%{transform:none}}
+@keyframes pop{0%,10%{transform:scale(0)}25%{transform:scale(1.25)}35%,85%{transform:scale(1)}95%,100%{transform:scale(0)}}
+
+/* Et aussi */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px}
+.grid>div{border-top:2px solid var(--line);padding-top:16px}
+.grid p{color:var(--mute)}
+.inst{margin:0;padding-left:22px}
+.inst li{margin-bottom:12px;padding-left:6px}
+footer{padding-block:24px 56px;color:var(--mute);font-size:14px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.steps li{grid-template-columns:60px 1fr;gap:16px}.vis{width:60px;height:60px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.cur{display:none}}
+</style>
+</head>
+<body>
+<header class="w">
+  <div class="logo">📌 PagePin</div>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-l="fr">FR</button>
+    <button type="button" data-l="en">EN</button>
+    <button type="button" data-l="it">IT</button>
+  </div>
+</header>
+
+<section class="w">
+  <h1 data-t="h1"></h1>
+  <p class="lead" data-t="lead"></p>
+  <a class="cta" href="#steps" data-t="cta"></a>
+  <div class="demo" aria-hidden="true">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="pg">
+      <b class="l1"></b><b class="l2"></b>
+      <div class="tw">
+        <div class="tg"></div>
+        <span class="bub pulse b1">1</span>
+        <div class="note" data-t="note"></div>
+      </div>
+      <b class="l3"></b>
+      <svg class="cur" viewBox="0 0 24 24" width="26" height="26"><path d="M5 3l14 8-6 1.5L10 19z" fill="#171a3a" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="w" id="steps">
+  <h2 data-t="st"></h2>
+  <ol class="steps">
+    <li><span class="vis"><span class="sw"><i></i></span></span><div><h3 data-t="s1t"></h3><p data-t="s1d"></p></div></li>
+    <li><span class="vis"><span class="bub b2">1</span></span><div><h3 data-t="s2t"></h3><p data-t="s2d"></p></div></li>
+    <li><span class="vis"><span class="bub pulse">1</span></span><div><h3 data-t="s3t"></h3><p data-t="s3d"></p></div></li>
+  </ol>
+</section>
+
+<section class="w">
+  <h2 data-t="ft"></h2>
+  <div class="grid">
+    <div><h3 data-t="f1t"></h3><p data-t="f1d"></p></div>
+    <div><h3 data-t="f2t"></h3><p data-t="f2d"></p></div>
+    <div><h3 data-t="f3t"></h3><p data-t="f3d"></p></div>
+    <div><h3 data-t="f4t"></h3><p data-t="f4d"></p></div>
+  </div>
+</section>
+
+<section class="w">
+  <h2 data-t="ins"></h2>
+  <ol class="inst">
+    <li data-t="i1"></li><li data-t="i2"></li><li data-t="i3"></li><li data-t="i4"></li>
+  </ol>
+</section>
+
+<footer class="w">PagePin v2.0.0</footer>
+
+<script>
+const T={
+fr:{title:"PagePin — des post-it sur n’importe quel site",h1:"Des post-it sur n’importe quel site web.",lead:"PagePin est une extension Chrome. Cliquez sur une page, écrivez une note, puis retrouvez-la exactement au même endroit.",cta:"Voir comment ça marche",note:"Appeler lundi 📞",st:"3 étapes. C’est tout.",
+s1t:"Activez",s1d:"Cliquez sur l’icône PagePin, puis sur « Activer le mode annotation sur ce site ».",
+s2t:"Cliquez et écrivez",s2d:"Cliquez à l’endroit voulu et écrivez votre note. Une bulle numérotée apparaît.",
+s3t:"Retrouvez",s3d:"Cliquez sur une note dans la liste : PagePin vous ramène au bon endroit, avec une bulle qui clignote.",
+ft:"Et aussi",
+f1t:"⏰ Rappels",f1d:"Une alerte arrive à l’heure choisie, une fois ou à répétition (jour, semaine, mois).",
+f2t:"🏷️ Étiquettes",f2d:"Classez vos notes avec des #étiquettes, une priorité et une couleur.",
+f3t:"📅 Tableau de bord",f3d:"Toutes vos notes au même endroit, avec recherche, filtres et agenda.",
+f4t:"🔒 Chez vous",f4d:"Vos notes restent dans votre navigateur. Export en .ics (agenda) et .yaml.",
+ins:"Installer en 4 clics",
+i1:"Ouvrez <code>chrome://extensions</code> dans Chrome.",
+i2:"Activez le « Mode développeur » (en haut à droite).",
+i3:"Cliquez sur « Charger l’extension non empaquetée ».",
+i4:"Choisissez le dossier PagePin, puis épinglez l’extension dans la barre du navigateur."},
+en:{title:"PagePin — sticky notes on any website",h1:"Sticky notes on any website.",lead:"PagePin is a Chrome extension. Click on a page, write a note, then find it again at the exact same spot.",cta:"See how it works",note:"Call on Monday 📞",st:"3 steps. That’s it.",
+s1t:"Turn it on",s1d:"Click the PagePin icon, then “Turn on annotation mode”.",
+s2t:"Click and write",s2d:"Click where you want and write your note. A numbered bubble appears.",
+s3t:"Find it again",s3d:"Click a note in the list: PagePin takes you back to the right spot, with a pulsing bubble.",
+ft:"And also",
+f1t:"⏰ Reminders",f1d:"Get an alert at the time you choose, once or repeating (day, week, month).",
+f2t:"🏷️ Labels",f2d:"Sort your notes with #labels, a priority and a color.",
+f3t:"📅 Dashboard",f3d:"All your notes in one place, with search, filters and an agenda.",
+f4t:"🔒 Yours only",f4d:"Your notes stay in your browser. Export as .ics (calendar) and .yaml.",
+ins:"Install in 4 clicks",
+i1:"Open <code>chrome://extensions</code> in Chrome.",
+i2:"Turn on “Developer mode” (top right).",
+i3:"Click “Load unpacked”.",
+i4:"Choose the PagePin folder, then pin the extension to the browser toolbar."},
+it:{title:"PagePin — post-it su qualsiasi sito",h1:"Post-it su qualsiasi sito web.",lead:"PagePin è un’estensione di Chrome. Clicca su una pagina, scrivi una nota e ritrovala esattamente nello stesso punto.",cta:"Scopri come funziona",note:"Chiamare lunedì 📞",st:"3 passaggi. Tutto qui.",
+s1t:"Attiva",s1d:"Clicca sull’icona di PagePin, poi su «Attiva la modalità annotazione».",
+s2t:"Clicca e scrivi",s2d:"Clicca dove vuoi e scrivi la nota. Compare una bolla numerata.",
+s3t:"Ritrova",s3d:"Clicca una nota nell’elenco: PagePin ti riporta nel punto giusto, con una bolla che pulsa.",
+ft:"E inoltre",
+f1t:"⏰ Promemoria",f1d:"Ricevi un avviso all’ora scelta, una volta o ripetuto (giorno, settimana, mese).",
+f2t:"🏷️ Etichette",f2d:"Organizza le note con #etichette, una priorità e un colore.",
+f3t:"📅 Dashboard",f3d:"Tutte le note in un posto, con ricerca, filtri e agenda.",
+f4t:"🔒 Solo tue",f4d:"Le note restano nel tuo browser. Esporta in .ics (calendario) e .yaml.",
+ins:"Installa in 4 clic",
+i1:"Apri <code>chrome://extensions</code> in Chrome.",
+i2:"Attiva la «Modalità sviluppatore» (in alto a destra).",
+i3:"Clicca su «Carica estensione non pacchettizzata».",
+i4:"Scegli la cartella PagePin, poi fissa l’estensione nella barra del browser."}
+};
+const $=s=>document.querySelectorAll(s);
+function go(l){
+  document.documentElement.lang=l;
+  document.title=T[l].title;
+  $("[data-t]").forEach(e=>{e.innerHTML=T[l][e.dataset.t]});
+  $("[data-l]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===l));
+  try{localStorage.setItem("pp-lang",l)}catch(e){}
+}
+$("[data-l]").forEach(b=>{b.onclick=()=>go(b.dataset.l)});
+let s;try{s=localStorage.getItem("pp-lang")}catch(e){}
+const n=(navigator.language||"en").slice(0,2);
+go(T[s]?s:T[n]?n:"en");
+</script>
+</body>
+</html>
